@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
+
 # When in doubt, see the downloads page: https://github.com/godotengine/godot-builds/releases/
 ARG GODOT_VERSION="4.6.1"
 
@@ -18,18 +19,21 @@ ARG GODOT_VERSION="4.6.1"
 # Also change the `SUBDIR` argument below when NOT using stable.
 ARG RELEASE_NAME="stable"
 
+ADD ./standard/download_export_templates.sh ./download_export_templates.sh
+
+# RUN ./download_export_templates.sh
+
+ARG TARGETARCH
+
 # This is only needed for non-stable builds (alpha, beta, RC)
 # e.g. SUBDIR "/beta3"
 # Use an empty string "" when the RELEASE_NAME is "stable".
 ARG SUBDIR=""
 
-ARG GODOT_TEST_ARGS=""
-ARG TARGETARCH
-ARG IS_MONO="false"
-
-ADD ./download_godot.sh ./download_godot.sh
-
+ADD ./standard/download_godot.sh ./download_godot.sh
 RUN ./download_godot.sh
+
+ARG GODOT_TEST_ARGS=""
 
 RUN godot -v -e --quit --headless ${GODOT_TEST_ARGS}
 # Godot editor settings are stored per minor version since 4.3.

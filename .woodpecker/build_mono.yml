@@ -6,9 +6,6 @@ matrix:
     # - 3.6.2
     # - 4.5.2
     - 4.6.1
-  IS_MONO:
-    - true
-    - false
 
 steps:
   - name: build-and-push
@@ -19,12 +16,12 @@ steps:
       username: prijindal
       password:
         from_secret: PACKAGE_TOKEN
+      dockerfile: Dockerfile.mono
       tags:
-        - ${GODOT_VERSION}-${IS_MONO}
+        - ${GODOT_VERSION}-mono
       provenance: mode=max
       build_args:
         GODOT_VERSION: ${GODOT_VERSION}
-        IS_MONO: ${IS_MONO}
       repo: git.prijindal.click/${CI_REPO}
       cache-from:
         - type=registry\\,ref=git.prijindal.click/${CI_REPO}:buildcache
