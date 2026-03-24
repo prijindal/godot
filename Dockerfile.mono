@@ -5,34 +5,19 @@ SHELL ["/bin/bash", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
-    unzip \
     dotnet-runtime-10.0 \
-    wget \
-    zip \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-
-# When in doubt, see the downloads page: https://github.com/godotengine/godot-builds/releases/
 ARG GODOT_VERSION="4.6.1"
 
-# Example values: stable, beta3, rc1, dev2, etc.
-# Also change the `SUBDIR` argument below when NOT using stable.
 ARG RELEASE_NAME="stable"
-
-ADD ./mono/download_export_templates.sh ./download_export_templates.sh
-
-RUN ./download_export_templates.sh
 
 ARG TARGETARCH
 
-# This is only needed for non-stable builds (alpha, beta, RC)
-# e.g. SUBDIR "/beta3"
-# Use an empty string "" when the RELEASE_NAME is "stable".
-ARG SUBDIR=""
-
-ADD ./mono/download_godot.sh ./download_godot.sh
-RUN ./download_godot.sh
+ADD artifacts/mono/templates ~/.local/share/godot/export_templates/${GODOT_VERSION}.${RELEASE_NAME}.mono
+ADD artifacts/mono/$TARGETARCH/godot /usr/local/bin/godot
+ADD artifacts/mono/$TARGETARCH/GodotSharp /usr/local/bin/GodotSharp
 
 ARG GODOT_TEST_ARGS=""
 
