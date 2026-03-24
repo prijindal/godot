@@ -21,8 +21,8 @@ fi
 
 
 
-wget https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-${RELEASE_NAME}/Godot_v${GODOT_VERSION}-${RELEASE_NAME}_${URL_INDENTIFIER}.zip \
-&& wget https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-${RELEASE_NAME}/Godot_v${GODOT_VERSION}-${RELEASE_NAME}_${URL_ZIP_IDENTIFIER}export_templates.tpz \
+wget -q https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-${RELEASE_NAME}/Godot_v${GODOT_VERSION}-${RELEASE_NAME}_${URL_INDENTIFIER}.zip \
+&& wget -q https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-${RELEASE_NAME}/Godot_v${GODOT_VERSION}-${RELEASE_NAME}_${URL_ZIP_IDENTIFIER}export_templates.tpz \
 && mkdir -p ~/.cache \
 && mkdir -p ~/.config/godot \
 && mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.${RELEASE_NAME} \
