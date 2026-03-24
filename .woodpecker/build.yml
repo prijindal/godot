@@ -19,7 +19,6 @@ steps:
 
   - name: Build Standard
     image: woodpeckerci/plugin-docker-buildx
-    depends_on: [download_artifacts]
     settings:
       platforms: linux/arm64,linux/amd64
       registry: git.prijindal.click
@@ -36,7 +35,6 @@ steps:
 
   - name: Build Mono
     image: woodpeckerci/plugin-docker-buildx
-    depends_on: [download_artifacts]
     settings:
       platforms: linux/arm64,linux/amd64
       registry: git.prijindal.click
