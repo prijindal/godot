@@ -21,7 +21,7 @@ steps:
     image: woodpeckerci/plugin-docker-buildx
     depends_on: [download_artifacts]
     settings:
-      platforms: linux/arm64
+      platforms: linux/arm64,linux/amd64
       registry: git.prijindal.click
       username: prijindal
       password:
@@ -33,15 +33,12 @@ steps:
       build_args:
         GODOT_VERSION: ${GODOT_VERSION}
       repo: git.prijindal.click/${CI_REPO}
-      cache-from:
-        - type=registry\\,ref=git.prijindal.click/${CI_REPO}:buildcache-standard
-      cache-to: type=registry,ref=git.prijindal.click/${CI_REPO}:buildcache-standard,mode=max
 
   - name: Build Mono
     image: woodpeckerci/plugin-docker-buildx
     depends_on: [download_artifacts]
     settings:
-      platforms: linux/arm64
+      platforms: linux/arm64,linux/amd64
       registry: git.prijindal.click
       username: prijindal
       password:
@@ -53,6 +50,3 @@ steps:
       build_args:
         GODOT_VERSION: ${GODOT_VERSION}
       repo: git.prijindal.click/${CI_REPO}
-      cache-from:
-        - type=registry\\,ref=git.prijindal.click/${CI_REPO}:buildcache-mono
-      cache-to: type=registry,ref=git.prijindal.click/${CI_REPO}:buildcache-mono,mode=max
