@@ -25,6 +25,7 @@ ARG SUBDIR=""
 
 ARG GODOT_TEST_ARGS=""
 ARG TARGETARCH
+ARG IS_MONO="false"
 
 ADD ./download_godot.sh ./download_godot.sh
 
