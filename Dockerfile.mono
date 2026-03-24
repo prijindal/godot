@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     dotnet-sdk-10.0 \
     curl \
+    zip \
     libfontconfig1 \
     && rm -rf /var/lib/apt/lists/*
 
