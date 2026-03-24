@@ -21,7 +21,7 @@ ARG RELEASE_NAME="stable"
 
 ADD ./standard/download_export_templates.sh ./download_export_templates.sh
 
-# RUN ./download_export_templates.sh
+RUN ./download_export_templates.sh
 
 ARG TARGETARCH
 
