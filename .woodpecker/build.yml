@@ -11,7 +11,7 @@ steps:
   - name: download_artifacts
     image: debian
     commands:
-      - apt get update && apt get install -y wget unzip
+      - apt-get update && apt-get install -y wget unzip
       - ./download_artifacts.sh
       - ./extract_artifacts.sh
     environment:
