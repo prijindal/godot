@@ -1,0 +1,37 @@
+FROM ubuntu:noble
+
+USER root
+SHELL ["/bin/bash", "-c"]
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    unzip \
+    wget \
+    zip \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# When in doubt, see the downloads page: https://github.com/godotengine/godot-builds/releases/
+ARG GODOT_VERSION="4.6.1"
+
+# Example values: stable, beta3, rc1, dev2, etc.
+# Also change the `SUBDIR` argument below when NOT using stable.
+ARG RELEASE_NAME="stable"
+
+# This is only needed for non-stable builds (alpha, beta, RC)
+# e.g. SUBDIR "/beta3"
+# Use an empty string "" when the RELEASE_NAME is "stable".
+ARG SUBDIR=""
+
+ARG GODOT_TEST_ARGS=""
+ARG TARGETARCH
+
+ADD ./download_godot.sh ./download_godot.sh
+
+RUN ./download_godot.sh
+
+RUN godot -v -e --quit --headless ${GODOT_TEST_ARGS}
+# Godot editor settings are stored per minor version since 4.3.
+# `${GODOT_VERSION:0:3}` transforms a string of the form `x.y.z` into `x.y`, even if it's already `x.y` (until Godot 4.9).
+RUN echo '[gd_resource type="EditorSettings" format=3]' > ~/.config/godot/editor_settings-${GODOT_VERSION:0:3}.tres
+RUN echo '[resource]' >> ~/.config/godot/editor_settings-${GODOT_VERSION:0:3}.tres
