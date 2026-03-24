@@ -15,7 +15,7 @@ ARG RELEASE_NAME="stable"
 
 ARG TARGETARCH
 
-ADD artifacts/standard/templates ~/.local/share/godot/export_templates/${GODOT_VERSION}.${RELEASE_NAME}
+ADD artifacts/standard/templates /root/.local/share/godot/export_templates/${GODOT_VERSION}.${RELEASE_NAME}
 ADD artifacts/standard/$TARGETARCH/godot /usr/local/bin/godot
 
 ARG GODOT_TEST_ARGS=""

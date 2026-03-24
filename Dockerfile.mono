@@ -16,7 +16,7 @@ ARG RELEASE_NAME="stable"
 
 ARG TARGETARCH
 
-ADD artifacts/mono/templates ~/.local/share/godot/export_templates/${GODOT_VERSION}.${RELEASE_NAME}.mono
+ADD artifacts/mono/templates /root/.local/share/godot/export_templates/${GODOT_VERSION}.${RELEASE_NAME}.mono
 ADD artifacts/mono/$TARGETARCH/godot /usr/local/bin/godot
 ADD artifacts/mono/$TARGETARCH/GodotSharp /usr/local/bin/GodotSharp
 
