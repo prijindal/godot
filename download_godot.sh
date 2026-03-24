@@ -4,20 +4,18 @@ echo $TARGETARCH
 
 URL_INDENTIFIER=""
 URL_ZIP_IDENTIFIER=""
-if [[ "$IS_MONO" == "true"]]; then
+if [[ "$IS_MONO" == "true" ]]; then
     URL_ZIP_IDENTIFIER="mono_"
-    if [[ "$TARGETARCH" == "arm64" ]];then
-        URL_INDENTIFIER="mono_linux_arm64.zip"
-    fi
-    elif [[ "$TARGETARCH" == "amd64" ]];then
-        URL_INDENTIFIER="mono_linux_x86_64.zip"
+    if [[ "$TARGETARCH" == "arm64" ]]; then
+        URL_INDENTIFIER="mono_linux_arm64"
+    elif [[ "$TARGETARCH" == "amd64" ]]; then
+        URL_INDENTIFIER="mono_linux_x86_64"
     fi
 else
-    if [[ "$TARGETARCH" == "arm64" ]];then
-        URL_INDENTIFIER="linux.arm64.zip"
-    fi
-    elif [[ "$TARGETARCH" == "amd64" ]];then
-        URL_INDENTIFIER="linux.x86_64.zip"
+    if [[ "$TARGETARCH" == "arm64" ]]; then
+        URL_INDENTIFIER="linux.arm64"
+    elif [[ "$TARGETARCH" == "amd64" ]]; then
+        URL_INDENTIFIER="linux.x86_64"
     fi
 fi
 
