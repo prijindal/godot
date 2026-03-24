@@ -20,7 +20,7 @@ steps:
       password:
         from_secret: PACKAGE_TOKEN
       tags:
-        - ${GODOT_VERSION}
+        - ${GODOT_VERSION}:${IS_MONO == "true" ? "-mono" : ""}
       provenance: mode=max
       build_args:
         GODOT_VERSION: ${GODOT_VERSION}
