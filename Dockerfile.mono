@@ -22,7 +22,7 @@ ARG RELEASE_NAME="stable"
 
 ADD ./mono/download_export_templates.sh ./download_export_templates.sh
 
-# RUN ./download_export_templates.sh
+RUN ./download_export_templates.sh
 
 ARG TARGETARCH
 
