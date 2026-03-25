@@ -52,7 +52,7 @@ jobs:
           sbom: true
           provenance: mode=max
           push: true
-          tags: ${{ matrix.GODOT_VERSION }}-standard
+          tags: ${{ env.IMAGE_NAME }}:${{ matrix.GODOT_VERSION }}-standard
           build-args: |
             GODOT_VERSION=${{ matrix.GODOT_VERSION }}
           cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
@@ -67,7 +67,7 @@ jobs:
           sbom: true
           provenance: mode=max
           push: true
-          tags: ${{ matrix.GODOT_VERSION }}-mono
+          tags: ${{ env.IMAGE_NAME }}:${{ matrix.GODOT_VERSION }}-mono
           build-args: |
             GODOT_VERSION=${{ matrix.GODOT_VERSION }}
           cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
