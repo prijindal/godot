@@ -23,7 +23,7 @@ cd ../../
 
 unzip artifacts/downloads/Godot_v${GODOT_VERSION_STUB}_mono_linux_arm64.zip -d artifacts/mono/ \
 && unzip artifacts/downloads/Godot_v${GODOT_VERSION_STUB}_mono_linux_x86_64.zip -d artifacts/mono/ \
-&& unzip artifacts/downloads/Godot_v${GODOT_VERSION_STUB}_mono_export_templates.tpz -d artifacts/mono/ \
+&& unzip artifacts/downloads/Godot_v${GODOT_VERSION_STUB}_mono_export_templates.tpz -d artifacts/mono/
 
 mv artifacts/mono/Godot_v${GODOT_VERSION_STUB}_mono_linux_arm64 artifacts/mono/arm64
 mv artifacts/mono/Godot_v${GODOT_VERSION_STUB}_mono_linux_x86_64 artifacts/mono/amd64

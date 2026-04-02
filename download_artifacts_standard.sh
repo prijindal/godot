@@ -22,7 +22,7 @@ cd ../../
 
 unzip artifacts/downloads/Godot_v${GODOT_VERSION_STUB}_linux.arm64.zip -d artifacts/standard/ \
 && unzip artifacts/downloads/Godot_v${GODOT_VERSION_STUB}_linux.x86_64.zip -d artifacts/standard/ \
-&& unzip artifacts/downloads/Godot_v${GODOT_VERSION_STUB}_export_templates.tpz -d artifacts/standard/ \
+&& unzip artifacts/downloads/Godot_v${GODOT_VERSION_STUB}_export_templates.tpz -d artifacts/standard/
 
 mkdir -p artifacts/standard/arm64
 mkdir -p artifacts/standard/amd64
