@@ -25,6 +25,9 @@ jobs:
         GODOT_VERSION:
           - 4.6.1
           - 4.6.2
+        GODOT_FLAVOR:
+          - standard
+          - mono
     runs-on: ubuntu-latest
 
     steps:
@@ -39,37 +42,17 @@ jobs:
         uses: docker/setup-buildx-action@v4
 
       - name: Download Artifacts
-        run: ./download_artifacts.sh
-
-      - name: Extract Artifacts
-        run: ./extract_artifacts.sh
+        run: ./download_artifacts_${{ matrix.GODOT_FLAVOR }}.sh
         
-      - name: Build and push Standard
+      - name: Build and push
         uses: docker/build-push-action@v7
         with:
           context: .
           platforms: linux/amd64,linux/arm64
-          file: Dockerfile.standard
+          file: Dockerfile.${{ matrix.GODOT_FLAVOR }}
           sbom: true
           provenance: mode=max
           push: true
-          tags: ${{ env.IMAGE_NAME }}:${{ matrix.GODOT_VERSION }}-standard
+          tags: ${{ env.IMAGE_NAME }}:${{ matrix.GODOT_VERSION }}-${{ matrix.GODOT_FLAVOR }}
           build-args: |
             GODOT_VERSION=${{ matrix.GODOT_VERSION }}
-          cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache-standard
-          cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache-standard,mode=max
-
-      - name: Build and push Mono
-        uses: docker/build-push-action@v7
-        with:
-          context: .
-          platforms: linux/amd64,linux/arm64
-          file: Dockerfile.mono
-          sbom: true
-          provenance: mode=max
-          push: true
-          tags: ${{ env.IMAGE_NAME }}:${{ matrix.GODOT_VERSION }}-mono
-          build-args: |
-            GODOT_VERSION=${{ matrix.GODOT_VERSION }}
-          cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache-mono
-          cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache-mono,mode=max
