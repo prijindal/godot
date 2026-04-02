@@ -18,6 +18,7 @@ wget -q https://github.com/godotengine/godot-builds/releases/download/${GODOT_VE
 && wget -q https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION_STUB}/Godot_v${GODOT_VERSION_STUB}_linux.arm64.zip \
 && wget -q https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION_STUB}/Godot_v${GODOT_VERSION_STUB}_export_templates.tpz
 
+cd ../../
 
 unzip artifacts/downloads/Godot_v${GODOT_VERSION_STUB}_linux.arm64.zip -d artifacts/standard/ \
 && unzip artifacts/downloads/Godot_v${GODOT_VERSION_STUB}_linux.x86_64.zip -d artifacts/standard/ \
