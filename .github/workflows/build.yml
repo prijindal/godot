@@ -45,6 +45,8 @@ jobs:
 
       - name: Download Artifacts
         run: ./download_artifacts_${{ matrix.GODOT_FLAVOR }}.sh
+        env:
+          GODOT_VERSION: ${{ matrix.GODOT_VERSION }}
         
       - name: Build and push
         uses: docker/build-push-action@v7

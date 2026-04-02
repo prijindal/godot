@@ -14,9 +14,9 @@ export GODOT_VERSION_STUB="${GODOT_VERSION}-${RELEASE_NAME}"
 
 echo $GODOT_VERSION_STUB
 
-wget -q https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION_STUB}/Godot_v${GODOT_VERSION_STUB}_linux.x86_64.zip \
-&& wget -q https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION_STUB}/Godot_v${GODOT_VERSION_STUB}_linux.arm64.zip \
-&& wget -q https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION_STUB}/Godot_v${GODOT_VERSION_STUB}_export_templates.tpz
+wget https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION_STUB}/Godot_v${GODOT_VERSION_STUB}_linux.x86_64.zip \
+&& wget https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION_STUB}/Godot_v${GODOT_VERSION_STUB}_linux.arm64.zip \
+&& wget https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION_STUB}/Godot_v${GODOT_VERSION_STUB}_export_templates.tpz
 
 cd ../../
 
