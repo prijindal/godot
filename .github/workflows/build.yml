@@ -57,7 +57,7 @@ jobs:
           provenance: mode=max
           push: true
           tags: ${{ env.IMAGE_NAME }}:${{ matrix.GODOT_VERSION }}-${{ matrix.GODOT_FLAVOR }}
-          cache-from: type=inline,ref=${{ env.IMAGE_NAME }}:${{ matrix.GODOT_VERSION }}-${{ matrix.GODOT_FLAVOR }}
-          cache-to: type=inline
+          cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
+          cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache,mode=max
           build-args: |
             GODOT_VERSION=${{ matrix.GODOT_VERSION }}
