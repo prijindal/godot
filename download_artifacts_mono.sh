@@ -19,7 +19,7 @@ wget -q https://github.com/godotengine/godot-builds/releases/download/${GODOT_VE
 && wget -q https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION_STUB}/Godot_v${GODOT_VERSION_STUB}_mono_export_templates.tpz
 
 
-&& unzip artifacts/downloads/Godot_v${GODOT_VERSION_STUB}_mono_linux_arm64.zip -d artifacts/mono/ \
+unzip artifacts/downloads/Godot_v${GODOT_VERSION_STUB}_mono_linux_arm64.zip -d artifacts/mono/ \
 && unzip artifacts/downloads/Godot_v${GODOT_VERSION_STUB}_mono_linux_x86_64.zip -d artifacts/mono/ \
 && unzip artifacts/downloads/Godot_v${GODOT_VERSION_STUB}_mono_export_templates.tpz -d artifacts/mono/ \
 
