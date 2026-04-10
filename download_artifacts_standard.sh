@@ -14,15 +14,16 @@ export GODOT_VERSION_STUB="${GODOT_VERSION}-${RELEASE_NAME}"
 
 echo $GODOT_VERSION_STUB
 
-wget -q https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION_STUB}/Godot_v${GODOT_VERSION_STUB}_linux.x86_64.zip \
-&& wget -q https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION_STUB}/Godot_v${GODOT_VERSION_STUB}_linux.arm64.zip \
-&& wget -q https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION_STUB}/Godot_v${GODOT_VERSION_STUB}_export_templates.tpz
+wget -O linux.x86_64.zip "https://downloads.godotengine.org/?version=${GODOT_VERSION}&flavor=${RELEASE_NAME}&slug=linux.x86_64.zip&platform=linux.64" \
+& wget -O linux.arm64.zip "https://downloads.godotengine.org/?version=${GODOT_VERSION}&flavor=${RELEASE_NAME}&slug=linux.arm64.zip&platform=linux.arm64" \
+& wget -O export_templates.tpz "https://downloads.godotengine.org/?version=${GODOT_VERSION}&flavor=${RELEASE_NAME}&slug=export_templates.tpz&platform=templates" \
+& wait
 
 cd ../../
 
-unzip artifacts/downloads/Godot_v${GODOT_VERSION_STUB}_linux.arm64.zip -d artifacts/standard/ \
-&& unzip artifacts/downloads/Godot_v${GODOT_VERSION_STUB}_linux.x86_64.zip -d artifacts/standard/ \
-&& unzip artifacts/downloads/Godot_v${GODOT_VERSION_STUB}_export_templates.tpz -d artifacts/standard/
+unzip artifacts/downloads/linux.arm64.zip -d artifacts/standard/ \
+&& unzip artifacts/downloads/linux.x86_64.zip -d artifacts/standard/ \
+&& unzip artifacts/downloads/export_templates.tpz -d artifacts/standard/
 
 mkdir -p artifacts/standard/arm64
 mkdir -p artifacts/standard/amd64
