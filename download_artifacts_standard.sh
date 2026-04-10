@@ -14,9 +14,9 @@ export GODOT_VERSION_STUB="${GODOT_VERSION}-${RELEASE_NAME}"
 
 echo $GODOT_VERSION_STUB
 
-wget -O linux.x86_64.zip "https://downloads.godotengine.org/?version=${GODOT_VERSION}&flavor=${RELEASE_NAME}&slug=linux.x86_64.zip&platform=linux.64" \
-& wget -O linux.arm64.zip "https://downloads.godotengine.org/?version=${GODOT_VERSION}&flavor=${RELEASE_NAME}&slug=linux.arm64.zip&platform=linux.arm64" \
-& wget -O export_templates.tpz "https://downloads.godotengine.org/?version=${GODOT_VERSION}&flavor=${RELEASE_NAME}&slug=export_templates.tpz&platform=templates" \
+wget -q -O linux.x86_64.zip "https://downloads.godotengine.org/?version=${GODOT_VERSION}&flavor=${RELEASE_NAME}&slug=linux.x86_64.zip&platform=linux.64" \
+& wget -q -O linux.arm64.zip "https://downloads.godotengine.org/?version=${GODOT_VERSION}&flavor=${RELEASE_NAME}&slug=linux.arm64.zip&platform=linux.arm64" \
+& wget -q -O export_templates.tpz "https://downloads.godotengine.org/?version=${GODOT_VERSION}&flavor=${RELEASE_NAME}&slug=export_templates.tpz&platform=templates" \
 & wait
 
 cd ../../

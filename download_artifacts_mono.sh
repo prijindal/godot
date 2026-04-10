@@ -14,9 +14,9 @@ export GODOT_VERSION_STUB="${GODOT_VERSION}-${RELEASE_NAME}"
 
 echo $GODOT_VERSION_STUB
 
-wget -O mono_linux_x86_64.zip "https://downloads.godotengine.org/?version=${GODOT_VERSION}&flavor=${RELEASE_NAME}&slug=mono_linux_x86_64.zip&platform=linux.64" \
-& wget -O mono_linux_arm64.zip "https://downloads.godotengine.org/?version=${GODOT_VERSION}&flavor=${RELEASE_NAME}&slug=mono_linux_arm64.zip&platform=linux.arm64" \
-& wget -O mono_export_templates.tpz "https://downloads.godotengine.org/?version=${GODOT_VERSION}&flavor=${RELEASE_NAME}&slug=mono_export_templates.tpz&platform=templates" \
+wget -q -O mono_linux_x86_64.zip "https://downloads.godotengine.org/?version=${GODOT_VERSION}&flavor=${RELEASE_NAME}&slug=mono_linux_x86_64.zip&platform=linux.64" \
+& wget -q -O mono_linux_arm64.zip "https://downloads.godotengine.org/?version=${GODOT_VERSION}&flavor=${RELEASE_NAME}&slug=mono_linux_arm64.zip&platform=linux.arm64" \
+& wget -q -O mono_export_templates.tpz "https://downloads.godotengine.org/?version=${GODOT_VERSION}&flavor=${RELEASE_NAME}&slug=mono_export_templates.tpz&platform=templates" \
 & wait
 
 cd ../../
