@@ -26,7 +26,6 @@ jobs:
           - 4.5.2
           - 4.6.1
           - 4.6.2
-          - 4.6.3
         GODOT_FLAVOR:
           - standard
           - mono
