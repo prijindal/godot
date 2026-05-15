@@ -24,11 +24,11 @@ jobs:
       IMAGE_NAME: prijindal/godot
     strategy:
       matrix:
-        GODOT_VERSION:
-          - 4.5.2
-          - 4.6.1
-          - 4.6.2
-          - 4.6.3
+        GODOT_VERSION_STUB:
+          - 4.5.2-stable
+          - 4.6.1-stable
+          - 4.6.2-stable
+          - 4.6.3-rc1
         GODOT_FLAVOR:
           - standard
           - mono
@@ -36,6 +36,14 @@ jobs:
     continue-on-error: true
 
     steps:
+      - name: Parse Godot version
+        run: |
+          STUB="${{ matrix.GODOT_VERSION_STUB }}"
+          GODOT_VERSION="${STUB%%-*}"
+          RELEASE_NAME="${STUB##*-}"
+          echo "GODOT_VERSION=$GODOT_VERSION" >> $GITHUB_OUTPUT
+          echo "RELEASE_NAME=$RELEASE_NAME" >> $GITHUB_OUTPUT
+        id: parse_version
       - uses: actions/checkout@v6
 
       - name: Login to docker
@@ -49,7 +57,8 @@ jobs:
       - name: Download Artifacts
         run: ./download_artifacts_${{ matrix.GODOT_FLAVOR }}.sh
         env:
-          GODOT_VERSION: ${{ matrix.GODOT_VERSION }}
+          GODOT_VERSION: ${{ steps.parse_version.outputs.GODOT_VERSION }}
+          RELEASE_NAME: ${{ steps.parse_version.outputs.RELEASE_NAME }}
         
       - name: Build and push
         uses: docker/build-push-action@v7
@@ -60,8 +69,9 @@ jobs:
           sbom: true
           provenance: mode=max
           push: true
-          tags: ${{ env.IMAGE_NAME }}:${{ matrix.GODOT_VERSION }}-${{ matrix.GODOT_FLAVOR }}
+          tags: ${{ env.IMAGE_NAME }}:${{ matrix.GODOT_VERSION_STUB }}-${{ matrix.GODOT_FLAVOR }}
           cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
           cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache,mode=max
           build-args: |
-            GODOT_VERSION=${{ matrix.GODOT_VERSION }}
+            GODOT_VERSION=${{ steps.parse_version.outputs.GODOT_VERSION }}
+            RELEASE_NAME=${{ steps.parse_version.outputs.RELEASE_NAME }}
