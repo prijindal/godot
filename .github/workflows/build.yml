@@ -29,7 +29,7 @@ jobs:
           - 4.6.1-stable
           - 4.6.2-stable
           - 4.6.3-stable
-          - 4.7-beta2
+          - 4.7-beta3
         GODOT_FLAVOR:
           - standard
           - mono
